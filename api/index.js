@@ -4,7 +4,7 @@ const app = express()
 const {buildSchema} = require('graphql')
 const {graphqlHTTP} = require('express-graphql')
 const { GraphQLDateTime } = require('graphql-scalars');
-const jwt =require("jsonwebtoken"); // Add this at the top
+const jwt = require("jsonwebtoken"); // Add this at the top
 
 const mongoose = require('mongoose')
 const UserModel = require('../models/user')
