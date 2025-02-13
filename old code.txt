@@ -1,0 +1,83 @@
+const mongoose = require('mongoose');
+
+import {
+    graphql,
+    GraphQLSchema,
+    GraphQLObjectType,
+    GraphQLString,
+  } from 'graphql';
+export const typeDefs = `#graphql
+  type Employee {
+    first_name: String!
+    last_name: String!
+    email: String!
+    position: String
+    salary: Float
+    date_of_joining: String
+    department: String
+    created_at: String
+    updated_at: String
+  }
+
+   addEmployee: async({empInput})=>
+        {
+            const emp= new employeeModel({
+                first_name: empInput.first_name,
+                last_name: empInput.last_name,
+                email: empInput.email,
+                gender: empInput.gender,
+                designation: empInput.designation,
+                salary: empInput.salary,
+                date_of_joining: empInput.date_of_joining,
+                department: empInput.department,
+                employee_photo: empInput.employee_photo,
+            })
+            const newEmp = await emp.save()
+            return newEmp
+    },
+
+
+  input EmployeeInput {
+  first_name: String!
+  last_name: String!
+  email: String!
+  position: String
+  salary: Float
+  date_of_joining: String
+  department: String
+}
+
+ type User {
+  _id: ID!
+  username: String!
+  email: String!
+  password: String!
+ }
+
+ type UserToken {
+  username: String!
+  token: String!
+ }
+ type Query{
+    
+    login() : 
+    getEmployees: [Employee],
+    getEmployee(_id: ID!): Employee,
+    searchEmployeebyDepartment(department: String!, ): Employee
+
+}
+type Mutation {
+    signup(input: User)
+    addEmployee(input: EmployeeInput!): Employee
+    updateEmployee(_id: ID!, input: EmployeeInput!): Employee
+    deleteEmployee(_id: ID!): Boolean
+  }
+  `
+employeeSchema.pre("findOneAndUpdate", function(next) {
+    this.set({ updated_at: Date.now() });
+    next();
+})
+const Employee = mongoose.model('Employee', employeeSchema);
+
+
+module.exports = Employee;
