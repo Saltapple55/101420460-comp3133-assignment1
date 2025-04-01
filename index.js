@@ -7,8 +7,8 @@ const { GraphQLDateTime } = require('graphql-scalars');
 const jwt = require("jsonwebtoken"); // Add this at the top
 
 const mongoose = require('mongoose')
-const UserModel = require('../models/user')
-const employeeModel = require('../models/employee')
+const UserModel = require('./models/user')
+const employeeModel = require('./models/employee')
 
 
 const PORT = 4000
