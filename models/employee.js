@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const emailRegEx = /^\S+@\S+\.\S+$/
 
 const employeeSchema = new mongoose.Schema({
 first_name: {
@@ -12,7 +13,9 @@ last_name: {
 email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    match: [emailRegEx, "Email has no spaces, and needs @domain.... at the end"]
+
 },
 gender: {
   type: String,
