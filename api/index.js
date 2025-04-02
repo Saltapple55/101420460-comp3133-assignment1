@@ -222,3 +222,5 @@ app.use("/graphql", graphqlHttp)
 //mutation is for insert or delete operations
 //can also define scalar with enum
 //can write the logic of the get - fine own type, return anything, 
+
+export default app;
