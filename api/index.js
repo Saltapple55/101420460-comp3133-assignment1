@@ -1,5 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcrypt');
+require('dotenv').config() //don;t need instance
+
 const app = express()
 const {buildSchema} = require('graphql')
 const {graphqlHTTP} = require('express-graphql')
@@ -13,6 +15,12 @@ const employeeModel = require('../models/employee')
 
 const PORT = 4000
 const saltRounds=10
+/*const DB_NAME="comp3133-assignment"
+        const DB_USER_NAME="saltyapple55"
+        const DB_PASSWORD="L2eJ1hiNW6I0LirV"
+        const CLUSTER_ID= "b9r5q"
+        const DB_CONNECTION = `mongodb+srv://${DB_USER_NAME}:${DB_PASSWORD}@cluster0.${CLUSTER_ID}.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`
+ */
 
 //helper function 
 
@@ -20,12 +28,8 @@ const connectDB=async()=>{
     try{
 
         console.log("Starting connection")
-        const DB_NAME="comp3133-assignment"
-        const DB_USER_NAME="saltyapple55"
-        const DB_PASSWORD="L2eJ1hiNW6I0LirV"
-        const CLUSTER_ID= "b9r5q"
-        const DB_CONNECTION = `mongodb+srv://${DB_USER_NAME}:${DB_PASSWORD}@cluster0.${CLUSTER_ID}.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`
-    
+                const DB_CONNECTION=process.env.DATABASE_URL
+
         mongoose.connect(DB_CONNECTION, {
             useNewUrlParser: true,
             useUnifiedTopology: true
