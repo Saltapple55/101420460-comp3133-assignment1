@@ -213,12 +213,12 @@ const graphqlHttp =graphqlHTTP({
 //add graphqlHttp to express - have to do /'...' before the http
 app.use("/graphql", graphqlHttp)
 
-app.listen(PORT, ()=>{
-    connectDB()
-    console.log("Graphql Server start")
-    console.log("http://localhost:4000")
+// app.listen(PORT, ()=>{
+//     connectDB()
+//     console.log("Graphql Server start")
+//     console.log("http://localhost:4000")
 
-})
+// })
 //mutation is for insert or delete operations
 //can also define scalar with enum
 //can write the logic of the get - fine own type, return anything, 
